@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<h1 class="mt-5">BENEFICIÁRIOS</h1>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Categoria</th>
+              <th>Situacão</th>
+              <th>Data Inclusão</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                  <td>
+                    <a href="{% url 'detalhes' cliente.id %}">{{ cliente.nome|upper }}</a>
+                  </td>
+                  <td>{{ cliente.sobrenome|upper }}</td>
+                  <td>{{ cliente.categoria }}</td>
+                  <td>{{ cliente.situacao }}</td>
+                  <td>{{ cliente.data_inclusao|date:'d/m/Y' }}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% for pagina in clientes.paginator.page_range %}
+      {% if clientes.number == pagina %}
+        <li class="page-item active"><a class="page-link" href="?page={{ pagina }}&termo={{ request.GET.termo }}">{{ pagina }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ pagina }}&termo={{ request.GET.termo }}">{{ pagina }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+
+{% endblock %}

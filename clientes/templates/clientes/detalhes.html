@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+        <h1 class="mt-5">{{ cliente.nome|upper }} {{ cliente.sobrenome|upper }}</h1>
+        <dl>
+          <dt>CPF</dt>
+          <dd>{{ cliente.cpf }}</dd>
+
+          <dt>RG</dt>
+          <dd>{{ cliente.rg }}</dd>
+
+          <dt>Sexo</dt>
+          <dd>{{ cliente.get_sexo_display }}</dd>
+
+          <dt>Telefone</dt>
+          <dd>{{ cliente.telefone }}</dd>
+
+          <dt>E-mail</dt>
+          <dd>{{ cliente.email }}</dd>
+
+          <dt>Data de inclusão</dt>
+          <dd>{{ cliente.data_inclusao|date:'d/m/Y' }}</dd>
+
+          <dt>Categoria</dt>
+          <dd>{{ cliente.categoria }}</dd>
+
+          <dt>Situação</dt>
+          <dd>{{ cliente.get_situacao_display }}</dd>
+
+          <dt>Descrição</dt>
+          <dd>{{ cliente.observacao }}</dd>
+        </dl>
+
+{% endblock %}
